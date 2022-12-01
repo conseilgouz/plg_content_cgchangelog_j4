@@ -1,0 +1,14 @@
+<changelogs>
+	<changelog>
+		<element>cgchangelog</element>
+		<type>plugin</type>
+		<group>content</group>
+		<version>1.0.0</version>
+        <note>
+            <item>Update : 01/12/2022</item>
+        </note>
+         <addition>
+            <item>New content plugin</item>
+        </addition>
+	</changelog>
+</changelogs>
