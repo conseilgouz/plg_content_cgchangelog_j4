@@ -7,7 +7,7 @@
 	<authorUrl>www.conseilgouz.com</authorUrl>
 	<copyright>ConseilGouz</copyright>
 	<license>GNU/GPL</license>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>PLG_CONTENT_CGCHANGELOG_DESC</description>
 	<files>
 		<filename plugin="cgchangelog">cgchangelog.php</filename>
