@@ -7,7 +7,7 @@
 	<authorUrl>www.conseilgouz.com</authorUrl>
 	<copyright>ConseilGouz</copyright>
 	<license>GNU/GPL</license>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<description>PLG_CONTENT_CGCHANGELOG_DESC</description>
 	<files>
 		<filename plugin="cgchangelog">cgchangelog.php</filename>
@@ -31,6 +31,6 @@
 	</fields>
 	</config>
     <updateservers>
-        <server type="extension" name="cgzipdir">https://raw.githubusercontent.com/conseilgouz/updates_github/master/plg_content_cgchangelog_update.xml</server>
+        <server type="extension" name="cgchglog">https://raw.githubusercontent.com/conseilgouz/updates_github/master/plg_content_cgchangelog_update.xml</server>
     </updateservers>
 </extension>
