@@ -3,6 +3,18 @@
 		<element>cgchangelog</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>1.0.3</version>
+        <note>
+            <item>Update : 15/01/2023</item>
+        </note>
+        <fix>
+            <item>Invalid number of items displayed</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>cgchangelog</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>1.0.2</version>
         <note>
             <item>Update : 08/12/2022</item>

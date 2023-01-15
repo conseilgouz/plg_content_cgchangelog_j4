@@ -1,9 +1,9 @@
 <?php 
 /**
- * @version		1.0.0
+ * @version		1.0.3
  * @package		CGChangeLog content plugin
  * @author		ConseilGouz
- * @copyright	Copyright (C) 2022 ConseilGouz. All rights reserved.
+ * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
  * @license		GNU/GPL v2; see LICENSE.php
  **/
 defined( '_JEXEC' ) or die( 'Restricted access' );
@@ -99,28 +99,28 @@ class plgContentCGChangelog extends CMSPlugin
 								$minor = $tmp[1];
 						   }
 						   $note = "";
-						   foreach ($one->note as $element) {
-						       $note .= ' ('.$element->item.')';
+						   foreach ($one->note->item as $element) {
+						       $note .= ' ('.$element.')';
 						   }
 						   $fix = "";
-						   foreach ($one->fix as $element) {
-						       $fix .= '<li><span title="Fix"># '.$element->item.'</span></li>'; 
+						   foreach ($one->fix->item as $element) {
+						       $fix .= '<li><span title="Fix"># '.$element.'</span></li>'; 
 						   }
 						   $addition = "";
-						   foreach ($one->addition as $element) {
-						       $addition .= '<li><span title="Add">+ '.$element->item.'</span></li>';
+						   foreach ($one->addition->item as $element) {
+						       $addition .= '<li><span title="Add">+ '.$element.'</span></li>';
 						   }
 						   $remove = "";
-						   foreach ($one->remove as $element) {
-						       $remove .= '<li><span title="Remove">- '.$element->item.'</span></li>';
+						   foreach ($one->remove->item as $element) {
+						       $remove .= '<li><span title="Remove">- '.$element.'</span></li>';
 						   }
 						   $change = "";
-						   foreach ($one->change as $element) {
-						       $change .= '<li><span title="Change">^ '.$element->item.'</span></li>';
+						   foreach ($one->change->item as $element) {
+						       $change .= '<li><span title="Change">^ '.$element.'</span></li>';
 						   }
 						   $security = "";
-						   foreach ($one->security as $element) {
-						       $security .= '<li><span title="Security">S '.$element->item.'</span></li>';
+						   foreach ($one->security->item as $element) {
+						       $security .= '<li><span title="Security">S '.$element.'</span></li>';
 						   }
 						   if ($limit > 0 && $count <= $limit) { // display it
 						       $str .= $note.'<ul>'.$fix.$addition.$remove.$change.$security.'</ul>';
