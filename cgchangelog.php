@@ -44,11 +44,19 @@ class plgContentCGChangelog extends CMSPlugin
 		        if (preg_match_all($regex, $ashort, $chglogs, PREG_SET_ORDER)) { // ensure the more specific regex matches
 		            foreach ($chglogs as $chglog) {
 		                $infos = explode('|',$chglog[2]);
+						$folder = "";
+						$element = $infos[0];
+						if (strpos($infos[0],'/')) {
+						    $tmp = explode('/',$infos[0]);
+							$folder = $tmp[0];
+							$element = $tmp[1];
+						}
 						$db = Factory::getDbo();
 						$query = $db->getQuery(true);
 						$query->select($db->quoteName('changelogurl'));
 						$query->from($db->quoteName('#__extensions'));
-						$query->where($db->quoteName('element').' like '.$db->quote($infos[0]));
+						$query->where($db->quoteName('element').' like '.$db->quote($element));
+						if ($folder) $query->where($db->quoteName('folder').' like '.$db->quote($folder));
 						$db->setQuery($query);
 						$extension = $db->loadObject();
 						if (!$extension->changelogurl) { // changelog not found : empty shortcode and exit
