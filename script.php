@@ -9,9 +9,9 @@
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
-use Joomla\CMS\Filesystem\File;
+use Joomla\Filesystem\File;
 
 class plgcontentcgchangelogInstallerScript
 {
@@ -79,13 +79,14 @@ class plgcontentcgchangelogInstallerScript
 
 			Folder::delete($f);
 		}
-		$langFiles = [
+		$obsoleteFiles = [
 			sprintf("%s/language/en-GB/en-GB.plg_content_%s.ini", JPATH_ADMINISTRATOR, $this->extname),
 			sprintf("%s/language/en-GB/en-GB.plg_content_%s.sys.ini", JPATH_ADMINISTRATOR, $this->extname),
 			sprintf("%s/language/fr-FR/fr-FR.plg_content_%s.ini", JPATH_ADMINISTRATOR, $this->extname),
 			sprintf("%s/language/fr-FR/fr-FR.plg_content_%s.sys.ini", JPATH_ADMINISTRATOR, $this->extname),
+			JPATH_SITE . '/plugins/plg_content_'.$this->extname.'/$cgchangelog.php'
 		];
-		foreach ($langFiles as $file) {
+		foreach ($obsoleteFiles as $file) {
 			if (@is_file($file)) {
 				File::delete($file);
 			}
@@ -144,7 +145,7 @@ class plgcontentcgchangelogInstallerScript
 	}
 	private function uninstallInstaller()
 	{
-		if ( ! JFolder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([

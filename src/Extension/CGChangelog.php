@@ -1,11 +1,12 @@
 <?php 
 /**
- * @version		1.0.3
+ * @version		1.0.5
  * @package		CGChangeLog content plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
  * @license		GNU/GPL v2; see LICENSE.php
  **/
+namespace ConseilGouz\Plugin\Content\CGChangelog\Extension;
 defined( '_JEXEC' ) or die( 'Restricted access' );
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Factory;
@@ -15,27 +16,38 @@ use Joomla\CMS\Changelog\Changelog;
 use Joomla\CMS\Http\HttpFactory;
 use Joomla\CMS\Version;
 use Joomla\Registry\Registry;
+use Joomla\Event\SubscriberInterface;
+use Joomla\CMS\HTML\HTMLHelper;
 
-class plgContentCGChangelog extends CMSPlugin
+final class CGChangelog extends CMSPlugin implements SubscriberInterface
 {	
     public $myname='CGChangelog';
     private $xmlParser;
-    public function __construct(& $subject, $config)
-    {
-        parent::__construct($subject, $config);
-        $this->loadLanguage();
-    }
+    protected $autoloadLanguage = true;
     
-	public function onContentPrepare($context, &$article, &$params, $page = 0) {
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            'onContentPrepare'   => 'onPrepare',
+        ];
+    }
+    public function onPrepare($event) {
+        
+        $context = $event[0];
 		// Don't run this plugin when the content is being indexed
 		if ($context == 'com_finder.indexer') {
 			return true;
 		}
 		// check chglog tags
-		$shortcode = $this->params->get('shortcode','chglog'); 
+		$article = $event[1];
+		$shortcode = 'chglog';
+		
+		// $shortcode = $this->params->get('shortcode','chglog'); 
 		if (strpos($article->text, '{'.$shortcode.'') === false ) {
 			return true;
 		}
+		HTMLHelper::_('bootstrap.modal');
+
 		$regex_all		= '/{'.$shortcode.'\s*.*?}/si';
 		if (preg_match_all($regex_all,$article->text,$matches)) {
 			$uri = Uri::getInstance();
@@ -45,7 +57,7 @@ class plgContentCGChangelog extends CMSPlugin
 		            foreach ($chglogs as $chglog) {
 		                $infos = explode('|',$chglog[2]);
 						$folder = "";
-						$element = $infos[0];
+						$element = trim($infos[0]);
 						if (strpos($infos[0],'/')) {
 						    $tmp = explode('/',$infos[0]);
 							$folder = $tmp[0];
@@ -107,28 +119,40 @@ class plgContentCGChangelog extends CMSPlugin
 								$minor = $tmp[1];
 						   }
 						   $note = "";
-						   foreach ($one->note->item as $element) {
-						       $note .= ' ('.$element.')';
+						   if (property_exists($one,'note')) {
+								foreach ($one->note->item as $element) {
+									$note .= ' ('.$element.')';
+								}
 						   }
 						   $fix = "";
-						   foreach ($one->fix->item as $element) {
-						       $fix .= '<li><span title="Fix"># '.$element.'</span></li>'; 
+						   if (property_exists($one,'fix')) {
+								foreach ($one->fix->item as $element) {
+									$fix .= '<li><span title="Fix"># '.$element.'</span></li>'; 
+								}
 						   }
 						   $addition = "";
-						   foreach ($one->addition->item as $element) {
-						       $addition .= '<li><span title="Add">+ '.$element.'</span></li>';
+						   if (property_exists($one,'addition')) {
+								foreach ($one->addition->item as $element) {
+									$addition .= '<li><span title="Add">+ '.$element.'</span></li>';
+								}
 						   }
 						   $remove = "";
-						   foreach ($one->remove->item as $element) {
-						       $remove .= '<li><span title="Remove">- '.$element.'</span></li>';
+						   if (property_exists($one,'remove')) {
+								foreach ($one->remove->item as $element) {
+									$remove .= '<li><span title="Remove">- '.$element.'</span></li>';
+								}
 						   }
 						   $change = "";
-						   foreach ($one->change->item as $element) {
-						       $change .= '<li><span title="Change">^ '.$element.'</span></li>';
+						   if (property_exists($one,'change')) {
+								foreach ($one->change->item as $element) {
+									$change .= '<li><span title="Change">^ '.$element.'</span></li>';
+								}
 						   }
 						   $security = "";
-						   foreach ($one->security->item as $element) {
-						       $security .= '<li><span title="Security">S '.$element.'</span></li>';
+						   if (property_exists($one,'security')) {
+								foreach ($one->security->item as $element) {
+									$security .= '<li><span title="Security">S '.$element.'</span></li>';
+								}
 						   }
 						   if ($limit > 0 && $count <= $limit) { // display it
 						       $str .= $note.'<ul>'.$fix.$addition.$remove.$change.$security.'</ul>';

@@ -3,6 +3,22 @@
 		<element>cgchangelog</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>1.0.5</version>
+        <note>
+            <item>Update : 24/07/2023</item>
+        </note>
+		<fix>
+			<item>PHP 8.2 : remove foreach warnings</item>
+		</fix>
+		<change>
+			<item>use Joomla\Filesystem instead of Joomla\CMS\Filesystem classes</item>
+			<item>Joomla 4 plugin normalisation</item>
+		</change>
+	</changelog>
+	<changelog>
+		<element>cgchangelog</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>1.0.4</version>
         <note>
             <item>Update : 23/03/2023</item>
