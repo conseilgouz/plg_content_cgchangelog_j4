@@ -1,6 +1,6 @@
 <?php 
 /**
- * @version		1.0.5
+ * @version		1.0.6
  * @package		CGChangeLog content plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
@@ -42,7 +42,7 @@ final class CGChangelog extends CMSPlugin implements SubscriberInterface
 		$article = $event[1];
 		$shortcode = 'chglog';
 		
-		// $shortcode = $this->params->get('shortcode','chglog'); 
+		$shortcode = $this->params->get('shortcode','chglog'); 
 		if (strpos($article->text, '{'.$shortcode.'') === false ) {
 			return true;
 		}

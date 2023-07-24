@@ -3,6 +3,18 @@
 		<element>cgchangelog</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>1.0.6</version>
+        <note>
+            <item>Update : 24/07/2023</item>
+        </note>
+		<fix>
+			<item>use shortcode parameter</item>
+		</fix>
+	</changelog>
+	<changelog>
+		<element>cgchangelog</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>1.0.5</version>
         <note>
             <item>Update : 24/07/2023</item>
