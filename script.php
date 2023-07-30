@@ -1,8 +1,8 @@
 <?php
 /**
-* CG ChangeLog Plugin  - Joomla 4.0.0 Module 
-* Version			: 1.0.1
-* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
+* CG ChangeLog Plugin  - Joomla 4.x/5x Module 
+* Version			: 1.0.7
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 */
 // No direct access to this file
@@ -23,6 +23,7 @@ class plgcontentcgchangelogInstallerScript
 	private $previous_version        = '';
 	private $dir           = null;
 	private $installerName = 'plgcontentcgchangeloginstaller';
+	private $lang;
 	public function __construct()
 	{
 		$this->dir = __DIR__;

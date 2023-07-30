@@ -3,6 +3,18 @@
 		<element>cgchangelog</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>1.0.7</version>
+        <note>
+            <item>Update : 30/07/2023</item>
+        </note>
+		<fix>
+			<item>$lang undefined in install script</item>
+		</fix>
+	</changelog>
+	<changelog>
+		<element>cgchangelog</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>1.0.6</version>
         <note>
             <item>Update : 24/07/2023</item>
