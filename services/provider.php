@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		1.0.5
+ * @version		1.0.8
  * @package		CGChangeLog content plugin
  * @author		ConseilGouz
  * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
@@ -33,9 +33,9 @@ return new class () implements ServiceProviderInterface {
         $container->set(
             PluginInterface::class,
             function (Container $container) {
-				
+				$displatcher = $container->get(DispatcherInterface::class);
                 $plugin = new CGChangelog(
-                    $container->get(DispatcherInterface::class),
+                    $displatcher,
                     (array) PluginHelper::getPlugin('content', 'cgchangelog')
                 );
                 $plugin->setApplication(Factory::getApplication());
