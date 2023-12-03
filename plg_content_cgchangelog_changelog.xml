@@ -3,6 +3,18 @@
 		<element>cgchangelog</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>1.0.9</version>
+        <note>
+            <item>Update : 03/12/2023</item>
+        </note>
+		<fix>
+			<item>Joomla 5.0.1 compatibility</item>
+		</fix>
+	</changelog>
+	<changelog>
+		<element>cgchangelog</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>1.0.8</version>
         <note>
             <item>Update : 11/10/2023</item>
