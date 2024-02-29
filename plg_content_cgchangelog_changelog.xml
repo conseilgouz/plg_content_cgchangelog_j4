@@ -3,6 +3,18 @@
 		<element>cgchangelog</element>
 		<type>plugin</type>
 		<group>content</group>
+		<version>1.1.0</version>
+        <note>
+            <item>Update : 29/02/2024</item>
+        </note>
+		<fix>
+			<item>Multiple changelogs on one page</item>
+		</fix>
+	</changelog>
+	<changelog>
+		<element>cgchangelog</element>
+		<type>plugin</type>
+		<group>content</group>
 		<version>1.0.9</version>
         <note>
             <item>Update : 03/12/2023</item>

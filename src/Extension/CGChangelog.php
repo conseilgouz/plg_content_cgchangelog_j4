@@ -1,9 +1,9 @@
 <?php 
 /**
- * @version		1.0.6
+ * @version		1.1.0
  * @package		CGChangeLog content plugin
  * @author		ConseilGouz
- * @copyright	Copyright (C) 2023 ConseilGouz. All rights reserved.
+ * @copyright	Copyright (C) 2024 ConseilGouz. All rights reserved.
  * @license		GNU/GPL v2; see LICENSE.php
  **/
 namespace ConseilGouz\Plugin\Content\CGChangelog\Extension;
@@ -49,6 +49,7 @@ final class CGChangelog extends CMSPlugin implements SubscriberInterface
 		HTMLHelper::_('bootstrap.modal');
 
 		$regex_all		= '/{'.$shortcode.'\s*.*?}/si';
+		$modal_count = 0;
 		if (preg_match_all($regex_all,$article->text,$matches)) {
 			$uri = Uri::getInstance();
 		    $regex = '/(?:<(div|p)[^>]*>)?{'.$shortcode.'(?:=(.+))?}/i';
@@ -88,11 +89,12 @@ final class CGChangelog extends CMSPlugin implements SubscriberInterface
 						}
 						$fullbutton = "";
 						$fullmodal = "";
+						$modal_count++;
 						if ($limit) {// add full changelog display button
-							$fullbutton = '<button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#fullModal">';
+							$fullbutton = '<button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#fullModal'.$modal_count.'">';
 							$fullbutton .= Text::_('PLG_CONTENT_CGCHANGELOG_FULLBUTTON');
 							$fullbutton .= '</button>';
-							$fullmodal = '<div class="modal fade" id="fullModal" tabindex="-1" aria-labelledby="fullModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">';
+							$fullmodal = '<div class="modal fade" id="fullModal'.$modal_count.'" tabindex="-1" aria-labelledby="fullModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">';
 							$fullmodal .= '<div class="modal-dialog modal-dialog-scrollable">';
 							$fullmodal .= '<div class="modal-content"><div class="modal-header">';
 							$fullmodal .= '<h5 class="modal-title" id="fullModalLabel">'.Text::sprintf("PLG_CONTENT_CGCHANGELOG_FULLTITLE",$infos[0]).'</h5>';
